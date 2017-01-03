@@ -5,7 +5,7 @@ using Test.API.Models;
 
 namespace Test.API.Controllers
 {
-    [EnableCors(origins: "http://localhost:60782", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:60782,http://localhost", headers: "*", methods: "*")]
     [RoutePrefix("api/users")]
     public class UsersController : ApiController
     {
@@ -19,6 +19,17 @@ namespace Test.API.Controllers
                 new User { Id = 2, FirstName = "Nattawut", LastName = "Tammaratmetee", Address = "xxxx" },
                 new User { Id = 3, FirstName = "Test", LastName = "Test", Address = "Test" }
             });
+        }
+
+        [Route("search")]
+        [HttpGet]
+        public IHttpActionResult Search(int? page = null, int? limit = null, string sortBy = null, string direction = null, string searchString = null)
+        {
+            //int total;
+            //var records = new GridModel().GetPlayers(page, limit, sortBy, direction, searchString, out total);
+            //return Json(new { records, total }, JsonRequestBehavior.AllowGet);
+
+            return Json(new { });
         }
 
         [Route("")]
