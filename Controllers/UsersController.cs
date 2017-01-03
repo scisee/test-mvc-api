@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
+using System.Web.Http;
 using System.Web.Mvc;
+using Test.API.Models;
 
 namespace Test.API.Controllers
 {
-    public class UsersController : Controller
+    [RoutePrefix("api/users")]
+    public class UsersController : ApiController
     {
-        // GET: Users
-        public ActionResult Index()
+        [Route("")]
+        [HttpGet]
+        public IHttpActionResult Index()
         {
-            return View();
+            return Json(new List<User>
+            {
+                new User { Id = 1, FirstName = "Panit", LastName = "Jantamas", Address = "xxxx" },
+                new User { Id = 2, FirstName = "Nattawut", LastName = "Tammaratmetee", Address = "xxxx" },
+                new User { Id = 3, FirstName = "Test", LastName = "Test", Address = "Test" }
+            });
         }
     }
 }
